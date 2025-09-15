@@ -27,7 +27,7 @@ export interface CanvasItemData {
 	content: string
 	caption?: string
 	comments: Comment[]
-	duration?: number
+	duration?: string
 	isPlaying?: boolean
 	keywords?: string[] | undefined
 	timestamp: Date
@@ -44,4 +44,5 @@ export interface Comment {
 	author: string
 	text: string
 	timestamp: Date
+	keywords?: string[] | undefined
 }

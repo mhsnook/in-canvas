@@ -1,27 +1,26 @@
 'use client'
 
-import type React from 'react'
-
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { Button } from '~/components/ui/button'
 import {
-	Filter,
 	Calendar,
 	CheckSquare,
+	Filter,
+	Maximize2,
 	ZoomIn,
 	ZoomOut,
-	Maximize2,
 } from 'lucide-react'
+import type React from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import CommentDialog from '~/components/comment-dialog'
-import type { CanvasItemData, TaskItem, Task, Comment } from '~/lib/types'
+import { Button } from '~/components/ui/button'
 import { mockItems } from '~/lib/mock-data'
+import type { CanvasItemData, Comment, Task, TaskItem } from '~/lib/types'
 import ChronologicalView from './chronological-view'
-import TasksView from './tasks-view'
+import EditCommentDialog from './edit-comment-dialog'
 import FilterPanel from './filter-panel'
+import NoteDialog from './note-dialog'
 import PlusMenu from './plus-menu'
 import TaskDialog from './task-dialog'
-import NoteDialog from './note-dialog'
-import EditCommentDialog from './edit-comment-dialog'
+import TasksView from './tasks-view'
 
 export default function InfiniteCanvas() {
 	const [layoutMode, setLayoutMode] = useState<'chronological' | 'tasks'>(
@@ -208,7 +207,7 @@ export default function InfiniteCanvas() {
 			text: '',
 			status: 'To do',
 			assignee: 'Julian',
-			priority: 'Medium',
+			priority: 'medium',
 		})
 		setTaskDialogOpen(true)
 		setShowPlusMenu(false)
@@ -276,11 +275,11 @@ export default function InfiniteCanvas() {
 	const saveTask = (taskData: Partial<Task> & Partial<TaskItem>) => {
 		if (editingTask) {
 			// Update existing task
-			if (editingTask.parentItemId) {
+			if (editingTask.parentItem?.id) {
 				// Task belongs to an item
 				setItems(
 					items.map((item) =>
-						item.id === editingTask.parentItemId
+						item.id === editingTask.parentItem?.id
 							? {
 									...item,
 									taskItems:
@@ -305,7 +304,7 @@ export default function InfiniteCanvas() {
 			}
 		} else {
 			// Create new task (existing logic)
-			const newTask: TaskItem = {
+			const newTask: Task = {
 				id: Date.now().toString(),
 				text: taskData.text || '',
 				status: taskData.status || 'To do',
@@ -468,9 +467,9 @@ export default function InfiniteCanvas() {
 		return groups
 	}, [filteredItems])
 
-	const addCommentNote = () => {
+	const addTextNote = () => {
 		setEditingNote({
-			type: 'comment',
+			type: 'text',
 			content: '',
 		})
 		setNoteDialogOpen(true)
@@ -556,7 +555,7 @@ export default function InfiniteCanvas() {
 				<PlusMenu
 					onAddVoiceNote={addVoiceNote}
 					onAddImageNote={addImageNote}
-					onAddCommentNote={addCommentNote}
+					onAddTextNote={addTextNote}
 					onAddTask={addTask}
 					onAddPrivateNote={addPrivateNoteDialog}
 				/>

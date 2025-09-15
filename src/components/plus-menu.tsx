@@ -1,20 +1,20 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { Button } from '~/components/ui/button'
 import {
-	Plus,
-	Mic,
 	Camera,
-	MessageCircle,
 	CheckSquare,
 	Lock,
+	MessageCircle,
+	Mic,
+	Plus,
 } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Button } from '~/components/ui/button'
 
 interface PlusMenuProps {
 	onAddVoiceNote: () => void
 	onAddImageNote: () => void
-	onAddCommentNote: () => void
+	onAddTextNote: () => void
 	onAddTask: () => void
 	onAddPrivateNote: () => void
 }
@@ -22,7 +22,7 @@ interface PlusMenuProps {
 export default function PlusMenu({
 	onAddVoiceNote,
 	onAddImageNote,
-	onAddCommentNote,
+	onAddTextNote,
 	onAddTask,
 	onAddPrivateNote,
 }: PlusMenuProps) {
@@ -75,16 +75,16 @@ export default function PlusMenu({
 						className="w-full justify-start text-pink-600 hover:bg-pink-50"
 					>
 						<Camera className="w-4 h-4 mr-2" />
-						Image
+						Image note
 					</Button>
 					<Button
-						onClick={onAddCommentNote}
+						onClick={onAddTextNote}
 						variant="ghost"
 						size="sm"
 						className="w-full justify-start text-gray-600 hover:bg-gray-50"
 					>
 						<MessageCircle className="w-4 h-4 mr-2" />
-						Comment
+						Text note
 					</Button>
 					<Button
 						onClick={onAddTask}
