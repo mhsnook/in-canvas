@@ -10,7 +10,11 @@ interface ImageCardProps {
 	onEdit: (item: CanvasItemData) => void
 }
 
-export default function ImageCard({ item, formatTime, onEdit }: ImageCardProps) {
+export default function ImageCard({
+	item,
+	formatTime,
+	onEdit,
+}: ImageCardProps) {
 	return (
 		<div className="bg-pink-200 rounded-xl p-3 text-pink-900 shadow-md relative group">
 			<Button
@@ -24,7 +28,9 @@ export default function ImageCard({ item, formatTime, onEdit }: ImageCardProps) 
 			<div className="flex items-center gap-2 mb-2">
 				<Camera className="w-4 h-4" />
 				<span className="text-xs font-medium">{item.author}</span>
-				<span className="text-xs opacity-70">{formatTime(item.timestamp)}</span>
+				<span className="text-xs opacity-70">
+					{formatTime(item.timestamp)}
+				</span>
 			</div>
 			<div className="w-full h-24 bg-pink-300 rounded-lg mb-2 flex items-center justify-center">
 				<Camera className="w-6 h-6 opacity-50" />
@@ -33,7 +39,10 @@ export default function ImageCard({ item, formatTime, onEdit }: ImageCardProps) 
 			{item.keywords && item.keywords.length > 0 && (
 				<div className="flex flex-wrap gap-1 mt-2">
 					{item.keywords.map((keyword, i) => (
-						<span key={i} className="text-xs bg-pink-300 px-2 py-0.5 rounded-full">
+						<span
+							key={i}
+							className="text-xs bg-pink-300 px-2 py-0.5 rounded-full"
+						>
 							{keyword}
 						</span>
 					))}

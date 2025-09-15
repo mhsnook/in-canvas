@@ -38,7 +38,10 @@ export default function CommentCard({
 			{comment.keywords && comment.keywords.length > 0 && (
 				<div className="flex flex-wrap gap-1 mt-1">
 					{comment.keywords.map((keyword, i) => (
-						<span key={i} className="text-xs bg-gray-300 px-1 py-0.5 rounded-full">
+						<span
+							key={i}
+							className="text-xs bg-gray-300 px-1 py-0.5 rounded-full"
+						>
 							{keyword}
 						</span>
 					))}

@@ -1,4 +1,4 @@
-import type { CanvasItemData } from "./types"
+import type { CanvasItemData } from './types'
 
 export const mockItems: CanvasItemData[] = [
 	// Day 1 - January 15 (Dense day with 35+ items)

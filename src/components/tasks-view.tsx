@@ -29,7 +29,9 @@ export default function TasksView({
 									className="bg-card border rounded-lg p-4 shadow-sm relative group"
 								>
 									<Button
-										onClick={() => editTaskItem(task, task.parentItem?.id)}
+										onClick={() =>
+											editTaskItem(task, task.parentItem?.id)
+										}
 										variant="ghost"
 										size="sm"
 										className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-purple-200 hover:bg-purple-300 text-purple-700"
@@ -41,13 +43,16 @@ export default function TasksView({
 										<span
 											className={`px-2 py-1 rounded-full text-xs font-medium ${task.status === 'Done' ? 'bg-green-100 text-green-800' : task.status === 'Doing' ? 'bg-blue-100 text-blue-800' : task.status === 'Reviewing' ? 'bg-yellow-100 text-yellow-800' : 'bg-gray-100 text-gray-800'}`}
 										>
-											{task.status || (task.completed ? 'Done' : 'To do')}
+											{task.status ||
+												(task.completed ? 'Done' : 'To do')}
 										</span>
 										<span className="text-xs text-muted-foreground">
 											{formatTimestamp(task.createdAt)}
 										</span>
 									</div>
-									<div className="text-sm font-medium mb-2">{task.text}</div>
+									<div className="text-sm font-medium mb-2">
+										{task.text}
+									</div>
 									{task.parentItem && (
 										<div className="text-xs text-muted-foreground">
 											From: {task.parentItem.caption}

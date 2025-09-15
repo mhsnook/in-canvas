@@ -15,9 +15,7 @@ interface EditCommentDialogProps {
 	open: boolean
 	onOpenChange: (open: boolean) => void
 	comment: (Comment & { itemId: string }) | null
-	onCommentChange: (
-		comment: (Comment & { itemId: string }) | null,
-	) => void
+	onCommentChange: (comment: (Comment & { itemId: string }) | null) => void
 	onSave: (commentData: Comment) => void
 }
 
@@ -42,7 +40,9 @@ export default function EditCommentDialog({
 							defaultValue={comment?.text || ''}
 							onChange={(e) =>
 								onCommentChange(
-									comment ? { ...comment, text: e.target.value } : null,
+									comment
+										? { ...comment, text: e.target.value }
+										: null,
 								)
 							}
 						/>

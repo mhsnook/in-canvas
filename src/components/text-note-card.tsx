@@ -28,13 +28,18 @@ export default function TextNoteCard({
 			<div className="flex items-center gap-2 mb-2">
 				<FileText className="w-4 h-4" />
 				<span className="text-xs font-medium">{item.author}</span>
-				<span className="text-xs opacity-70">{formatTime(item.timestamp)}</span>
+				<span className="text-xs opacity-70">
+					{formatTime(item.timestamp)}
+				</span>
 			</div>
 			<p className="text-sm font-medium mb-1">{item.content}</p>
 			{item.keywords && item.keywords.length > 0 && (
 				<div className="flex flex-wrap gap-1 mb-2">
 					{item.keywords.map((keyword, i) => (
-						<span key={i} className="text-xs bg-green-300 px-2 py-0.5 rounded-full">
+						<span
+							key={i}
+							className="text-xs bg-green-300 px-2 py-0.5 rounded-full"
+						>
 							{keyword}
 						</span>
 					))}
